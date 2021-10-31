@@ -45,7 +45,7 @@ def lastDayOfMonth(year, month):
 
 
 def mainLoop():
-    monthsAhead = 1
+    monthsAhead = 4
     currentYear = datetime.now().year
     currentMonth = datetime.now().month
     currentDay = datetime.now().day
