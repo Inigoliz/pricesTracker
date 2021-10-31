@@ -6,10 +6,20 @@ from selenium.webdriver.common.by import By
 import time
 import random
 from datetime import datetime
+import os
 
-import numpy as np
 import pandas as pd
 
+file_path = str(os.path.dirname(os.path.abspath(__file__)))
+
+is_RPi = False
+
+if "pi" in file_path:
+    is_RPi = True
+else:
+    is_RPi = False
+
+print(f'Executing on RapsberryPi = {is_RPi}')
 
 # Auxiliary functions
 
@@ -61,7 +71,11 @@ def mainLoop():
         if m == 12:
             year += 1
 
-    service = Service('/Users/tesla/Mis Cosas/Proyectos/ryanairPricesTracker/chromedriver')
+    if is_RPi:
+        service = Service('/usr/lib/chromium-browser/chromedriver')
+    else:
+        service = Service('/Users/tesla/Mis Cosas/Proyectos/ryanairPricesTracker/chromedriver')
+
     options = Options()
     options.headless = True
     driver = webdriver.Chrome(options=options, service=service)
@@ -70,6 +84,7 @@ def mainLoop():
     url2 = "&dateIn=&isConnectedFlight=false&isReturn=false&discount=0&promoCode=&originIata=CPH&destinationIata=MAD&tpAdults=1&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2021-10-30&tpEndDate=&tpDiscount=20&tpPromoCode=&tpOriginIata=CPH&tpDestinationIata=MAD"
 
     prices = {}
+    """
     for date in datesToCheck:
         full_url = url1 + date + url2
         # print(full_url)
@@ -86,14 +101,14 @@ def mainLoop():
         except:
             # print(f'No flight on %s' % date)
             time.sleep(random.uniform(0.5, 3))
-
+"""
     driver.quit()
 
     today = str(datetime.now().year) + "-" + str(datetime.now().month) + "-" + \
         str(datetime.now().day) + "at" + str(datetime.now().hour) + "-" + str(datetime.now().minute)
 
     df = pd.DataFrame(list(prices.items()), columns=['Departure', 'Price'])
-    df.to_csv("./data/" + today + ".csv")
+    df.to_csv(file_path + "/data/" + today + ".csv")
 
 
 if __name__ == '__main__':
