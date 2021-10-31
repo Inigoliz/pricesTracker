@@ -3,10 +3,10 @@
 
 source ~/Documents/Venvironments/sandbox/bin/activate
 
-#python3 ~/Documents/Proyects/pricesTracker/sandbbox.py
-#python3 ~/Documents/Proyects/pricesTracker/pricesCollector.py
+# Gather prices
+python3 ~/Documents/Proyects/pricesTracker/pricesCollector.py
 
-# Share ffiles over github
+# Share files over github
 cd /home/pi/Documents/Proyects/pricesTracker/
 git add /home/pi/Documents/Proyects/pricesTracker/data/*
 git push
