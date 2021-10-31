@@ -19,7 +19,12 @@ if "pi" in file_path:
 else:
     is_RPi = False
 
+today_is = datetime.now()
+print("Running on")
+print(today_is)
 print(f'Executing on RapsberryPi = {is_RPi}')
+print("File located at:")
+print(file_path)
 
 # Auxiliary functions
 
@@ -32,7 +37,7 @@ def formatDay(d):
 
 
 def lastDayOfMonth(year, month):
-    """ Work out the last day of the month """
+    # Work out the last day of the month
     last_days = [31, 30, 29, 28, 27]
     for i in last_days:
         try:
@@ -76,6 +81,8 @@ def mainLoop():
     else:
         service = Service('/Users/tesla/Mis Cosas/Proyectos/ryanairPricesTracker/chromedriver')
 
+    print("service stablished")
+
     options = Options()
     options.headless = True
     driver = webdriver.Chrome(options=options, service=service)
@@ -84,7 +91,7 @@ def mainLoop():
     url2 = "&dateIn=&isConnectedFlight=false&isReturn=false&discount=0&promoCode=&originIata=CPH&destinationIata=MAD&tpAdults=1&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2021-10-30&tpEndDate=&tpDiscount=20&tpPromoCode=&tpOriginIata=CPH&tpDestinationIata=MAD"
 
     prices = {}
-    """
+    
     for date in datesToCheck:
         full_url = url1 + date + url2
         # print(full_url)
@@ -97,15 +104,17 @@ def mainLoop():
         try:
             price = driver.find_element(By.XPATH, '//span[@data-e2e="flight-card-price"]').text
             prices.update({date: price})
-            # print(f'Price on %s: %s' % (date, price))
+            print(f'Price on %s: %s' % (date, price))
         except:
-            # print(f'No flight on %s' % date)
+            print(f'No flight on %s' % date)
             time.sleep(random.uniform(0.5, 3))
-"""
+
     driver.quit()
 
     today = str(datetime.now().year) + "-" + str(datetime.now().month) + "-" + \
         str(datetime.now().day) + "at" + str(datetime.now().hour) + "-" + str(datetime.now().minute)
+
+    print("Writing to file")
 
     df = pd.DataFrame(list(prices.items()), columns=['Departure', 'Price'])
     df.to_csv(file_path + "/data/" + today + ".csv")
