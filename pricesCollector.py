@@ -19,7 +19,7 @@ if "pi" in file_path:
 else:
     is_RPi = False
 
-print(f'Executing on RapsberryPi = {is_cd RPi}')
+print(f'Executing on RapsberryPi = {is_RPi}')
 
 # Auxiliary functions
 
@@ -83,7 +83,9 @@ def mainLoop():
     url2 = "&dateIn=&isConnectedFlight=false&isReturn=false&discount=0&promoCode=&originIata=CPH&destinationIata=MAD&tpAdults=1&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2021-10-30&tpEndDate=&tpDiscount=20&tpPromoCode=&tpOriginIata=CPH&tpDestinationIata=MAD"
 
     prices = {}
-    """
+    
+    print("Starting iteration...")
+
     for date in datesToCheck:
         full_url = url1 + date + url2
         # print(full_url)
@@ -96,11 +98,11 @@ def mainLoop():
         try:
             price = driver.find_element(By.XPATH, '//span[@data-e2e="flight-card-price"]').text
             prices.update({date: price})
-            # print(f'Price on %s: %s' % (date, price))
+            print(f'Price on %s: %s' % (date, price))
         except:
-            # print(f'No flight on %s' % date)
+            print(f'No flight on %s' % date)
             time.sleep(random.uniform(0.5, 3))
-"""
+
     driver.quit()
 
     today = str(datetime.now().year) + "-" + str(datetime.now().month) + "-" + \
