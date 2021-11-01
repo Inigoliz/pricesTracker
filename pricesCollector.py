@@ -45,7 +45,7 @@ def last_day_of_month(year, month):
 
 
 def main_loop():
-    monthsAhead = 1
+    monthsAhead = 4
     currentYear = datetime.now().year
     currentMonth = datetime.now().month
     currentDay = datetime.now().day
@@ -83,6 +83,8 @@ def main_loop():
     url2 = "&dateIn=&isConnectedFlight=false&isReturn=false&discount=0&promoCode=&originIata=CPH&destinationIata=MAD&tpAdults=1&tpTeens=0&tpChildren=0&tpInfants=0&tpStartDate=2021-10-30&tpEndDate=&tpDiscount=20&tpPromoCode=&tpOriginIata=CPH&tpDestinationIata=MAD"
 
     prices = {}
+
+    print("Starting iteration...")
 
     for date in datesToCheck:
         full_url = url1 + date + url2
