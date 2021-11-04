@@ -110,7 +110,7 @@ def main_loop():
         str(datetime.now().day) + "at" + str(datetime.now().hour) + "-" + str(datetime.now().minute)
 
     df = pd.DataFrame(list(prices.items()), columns=['Departure', 'Price'])
-    df.to_csv(file_path + "/data_MAD-CPH/" + today + ".csv")
+    df.to_csv(file_path + "/data-MAD-CPH/" + today + ".csv")
 
 
 if __name__ == '__main__':
