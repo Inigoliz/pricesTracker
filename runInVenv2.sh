@@ -4,7 +4,7 @@
 source ~/Documents/Venvironments/sandbox/bin/activate
 
 # Gather prices
-python3 ~/Documents/Proyects/pricesTracker/pricesCollector-MAD-CPH.py
+python3 ~/Documents/Proyects/pricesTracker/pricesCollectorGeneric.py
 
 # Share files over github
 cd /home/pi/Documents/Proyects/pricesTracker/
