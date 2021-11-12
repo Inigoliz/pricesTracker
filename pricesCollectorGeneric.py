@@ -21,8 +21,7 @@ else:
 
 print(f'Executing on RapsberryPi = {is_RPi}')
 
-combinations = {"CPH": ["DUB", "KRK", "EDI", "PRG", "TRN", "OPO", "CGN", "CRL", "ALC", "BTS"]}
-
+combinations = {"CPH": ["DUB", "KRK", "EDI", "PRG", "TRN", "OPO", "CGN", "CRL", "ALC", "BTS"], "MAD": ["CPH"]}
 # Auxiliary functions
 
 
