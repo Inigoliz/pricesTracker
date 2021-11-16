@@ -21,7 +21,8 @@ else:
 
 print(f'Executing on RapsberryPi = {is_RPi}')
 
-combinations = {"CPH": ["DUB", "KRK", "EDI", "PRG", "TRN", "OPO", "CGN", "CRL", "ALC", "BTS"], "MAD": ["CPH"]}
+combinations = {"CPH": ["DUB", "KRK", "EDI", "PRG", "TRN",
+                        "OPO", "CGN", "CRL", "ALC", "BTS"], "MAD": ["CPH"]}
 # Auxiliary functions
 
 
@@ -71,17 +72,21 @@ def main_loop():
         if m == 12:
             year += 1
 
-    if is_RPi:
-        service = Service('/usr/lib/chromium-browser/chromedriver')
-    else:
-        service = Service('/Users/tesla/Mis Cosas/Proyectos/ryanairPricesTracker/chromedriver')
-
-    options = Options()
-    options.headless = True
-    driver = webdriver.Chrome(options=options, service=service)
-
     for origin in list(combinations.keys()):
         for destination in combinations[origin]:
+
+            print("Setting up webdriver...")
+            print(origin, destination)
+
+            if is_RPi:
+                service = Service('/usr/lib/chromium-browser/chromedriver')
+            else:
+                service = Service(
+                    '/Users/tesla/Mis Cosas/Proyectos/pricesTracker/chromedriver')
+
+            options = Options()
+            options.headless = True
+            driver = webdriver.Chrome(options=options, service=service)
 
             prices = {}
 
@@ -124,7 +129,7 @@ def main_loop():
             print("Writing to file...")
             df.to_csv(file_path + folder + today + ".csv")
 
-    driver.quit()
+            driver.quit()
 
 
 if __name__ == '__main__':
