@@ -21,8 +21,15 @@ else:
 
 print(f'Executing on RapsberryPi = {is_RPi}')
 
+<<<<<<< HEAD
 combinations = {"CPH": ["DUB", "KRK", "EDI", "PRG", "TRN",
                         "OPO", "CGN", "CRL", "ALC", "BTS"], "MAD": ["CPH"]}
+=======
+combinations = {"MAD": ["CPH"], "CPH": ["MAD", "DUB", "KRK", "EDI", "PRG", "TRN", "OPO", "CGN", "CRL", "ALC", "BTS"]}
+#combinations = {"MAD": ["CPH"], "CPH": ["DUB", "KRK"]}
+#combinations = {"MAD": ["CPH"]}
+
+>>>>>>> d62c25fa4da57715e09fc0fb92d6ba1e261856f7
 # Auxiliary functions
 
 
